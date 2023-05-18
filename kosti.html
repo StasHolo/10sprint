@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <style>
+      .general{
+        display: flex;
+        align-items:center ;
+        justify-content: center;
+      }
+      .chislo{
+        border: 1px solid black;
+        width: 100px;
+        height: 100px;
+        margin: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30;
+      }
+      .second{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .kol{
+        display: flex;
+      }
+      button{
+        width: 100px;
+        height: 50px;
+        border-radius: 20px;
+      }
+    </style>
+<script>
+  let i=0
+</script>
+  </head>
+  <body>
+    <div class="general">
+      <div class="chislo"<h2 id="1chislo"></h2></div>
+      <div class="chislo"<h2 id="2chislo"></h2></div>
+    </div>
+    <div class="second">
+    <button onclick="brosit()">Бросить кости</button>
+    <div class="kol"><h2>Кол-во бросков: </h2><h2 style="margin-left: 10px;" id="najat"></h2></div>
+    <h2 style="color: green;" id="win"></h2>
+  </div>
+      <script>
+        function brosit(){
+        const numberArr = [1,2,3,4,5,6]
+        const RandomNumber1 = Math.round(Math.random()*5)
+        const RandomNumber2 = Math.round(Math.random()*5)
+
+        const Element1 = document.getElementById("1chislo")
+        Element1.innerHTML = numberArr[RandomNumber1]
+
+        const Element2 = document.getElementById("2chislo")
+        Element2.innerHTML = numberArr[RandomNumber2]
+
+        if (RandomNumber1 === RandomNumber2){
+          const text = 'Поздравляю! Выпал дубль!'
+          const ElementWin = document.getElementById("win")
+        ElementWin.innerHTML = text
+        }
+        if (RandomNumber1 != RandomNumber2){
+          const text = ''
+          const ElementWin = document.getElementById("win")
+        ElementWin.innerHTML = text
+        }
+
+        i = i+1
+        const ElementNajat = document.getElementById("najat")
+        ElementNajat.innerHTML = i
+        }
+      </script>
+    
+  </body>
+</html>
