@@ -1,0 +1,1 @@
+Шар судьбы: https://stasholo.github.io/10sprint/
