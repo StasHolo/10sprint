@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <style>
+.img-cookie{
+position: absolute;
+width: 314px;
+height: 314px;
+left: 54px;
+top: 138px;
+background: url(image.png);
+transition: transform 0.3s ease;
+}
+img:active {
+  transform: scale(0.9);
+}
+.text-cookie{
+
+position: absolute;
+width: 323px;
+height: 39px;
+left: 54px;
+top: 69px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 1400;
+font-size: 25px;
+line-height: 39px;
+color: #000000;
+}
+.money{
+  position: absolute;
+width: 126px;
+height: 39px;
+left: 456px;
+top: 218px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 39px;
+color: #000000;
+}
+.kol-vo{
+  position: absolute;
+width: 35px;
+height: 39px;
+left: 646px;
+top: 218px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 39px;
+color: #000000;
+}
+.Upgrade{
+  
+position: absolute;
+width: 133px;
+height: 70px;
+left: 456px;
+top: 314px;
+
+background: #35BF05;
+border-radius: 5px;
+}
+.Upgrade h3{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+
+color: #FFFFFF;
+}
+
+    </style>
+    <script>
+      let i=0
+      let k = 1
+    </script>
+  </head>
+  <body>
+    <h3 class="text-cookie">Кликай на печеньку</h3>
+    <img class="img-cookie" id="img-cookie" src="image 1.png">
+    <h3 class="money">Монеты</h3>
+    <h3 class="kol-vo" id="kol"></h3>
+    <button class="Upgrade" id="Upgrade" onclick="upgrade()"><h3>Upgrade</h3></button>
+
+    <script>
+    const img = document.getElementById("img-cookie")
+    
+    function clickImg(){
+      i = i+k
+        const Elementkol = document.getElementById("kol")
+        Elementkol.innerHTML = i 
+    }
+    img.addEventListener('click', clickImg)
+    function upgrade(){
+    if (i >= 10){
+      k=2;
+    }
+    }
+    </script>
+
+
+  </body>
+</html>
+
+
