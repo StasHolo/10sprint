@@ -69,22 +69,39 @@
     </div>
   </div>
   <script>
-    const list = document.getElementsByClassName('list') [0]
-    addDeleteHandlers()
-
+    let list = null;
+    
+    function loadList() {
+        const savedItems = localStorage.getItem('items');
+        if (savedItems !== null) {
+          const itemsArray = JSON.parse(savedItems);
+          list.innerHTML = '';
+          for (let i = 0; i < itemsArray.length; i++) {
+            const item = document.createElement('div'); // Измененный тип элемента
+            item.innerHTML = `${itemsArray[i]} <button class='btn delete-btn'>X</button>`;
+            list.appendChild(item);
+          }
+          addDeleteHandlers();
+        }
+      }
+    function saveList() {
+        const listContainer = document.querySelector('.list-container');
+        const itemList = listContainer.querySelectorAll('.list div');
+        const itemsArray = [];
+        for(let i = 0; i < itemList.length; i++) {
+          const item = itemList[i].innerText.split(' ')[0];
+          itemsArray.push(item);
+        }
+        localStorage.setItem('items', JSON.stringify(itemsArray));
+      }
     function addItem() {
-      const itemText = prompt ('Что добавить?') || 'Пусто'
-      const item = document.createElement('li')
-      item.innerHTML = `${itemText}<button class='btn delete-btn'>X</button>`
-      list.appendChild(item)
-      addDeleteHandlers()
-    }
-    function clearList(){
-      list.innerHTML = ''
-    }
-    function deleteItem(event){
-      event.target.parentElement.remove()
-    }
+      const itemText = prompt('Что добавить?') || 'Пусто';
+      const item = document.createElement('div');
+      item.innerHTML = `${itemText} <button class='btn delete-btn'>X</button>`;
+      list.appendChild(item);
+      addDeleteHandlers();
+      saveList();
+      }
     function addDeleteHandlers(){
       const deleteButtons = document.getElementsByClassName('delete-btn')
       for (let i = 0; i< deleteButtons.length; i++){
@@ -92,7 +109,30 @@
         deleteButton.addEventListener('click', deleteItem)
       }
     }
+    function deleteItem(event){
+      event.target.parentElement.remove()
+      saveList();
+    }
+    function clearList(){
+      list.innerHTML = ''
+      saveList();
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+    list = document.querySelector('.list');
+    addDeleteHandlers();
+    loadList();
+
+    const addButton = document.querySelector('.add-button');
+    addButton.addEventListener('click', addItem);
+
+    const clearButton = document.querySelector('.clear-button');
+    clearButton.addEventListener('click', clearList);
+    });
+    loadList()
+    addDeleteHandlers()
     
+    localStorage.setItem('key2', 'Обычный текст')
+    console.log(localStorage.getItem('key2'))
   </script>
   </body>
 </html>
