@@ -89,7 +89,7 @@
         const itemList = listContainer.querySelectorAll('.list div');
         const itemsArray = [];
         for(let i = 0; i < itemList.length; i++) {
-          const item = itemList[i].innerText.split(' ')[0];
+          const item = itemList[i].innerText.split('\n')[0];
           itemsArray.push(item);
         }
         localStorage.setItem('items', JSON.stringify(itemsArray));
